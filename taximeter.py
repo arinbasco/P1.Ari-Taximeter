@@ -2,7 +2,6 @@ import time
 
 def calculate_fare(seconds_stopped, seconds_moving):
     fare = seconds_stopped * 0.02 + seconds_moving * 0.05
-    print(f"Total: {fare}")
     return fare
 
 def taximeter():
@@ -56,16 +55,35 @@ def taximeter():
             else:
                 moving_time += duration
             total_fare = calculate_fare(stopped_time, moving_time)
-            print()
-
-#  agregar prints del resumen (stopped_time, moving_time, total_fare)
-            #  resetear variables al finalizar viaje
-
-        #  elif 'e' - nuevo viaje sin cerrar programa
-        #  elif 'f' - salir del programa
-        #  else - comando no reconocido
-        if opcion == "f":
+            print(f"\n Viaje finalizado")
+            print(f"\n Tiempo detenido: {stopped_time:.1f} segundos -- €{stopped_time * 0.02:.2f}")
+            print(f"\n Tiempo en movimiento: {moving_time:.1f} segundos -- €{moving_time * 0.05:.2f}")
+            print(f"\n\nTotal: €{total_fare:.2f}")
+            trip_active = False
+            state = None
+        elif opcion == "e":
+            if not trip_active:
+                print("No hay un viaje activo. Por favor ingrese el comando A para comenzar.")
+                continue
+            duration = time.time() - state_start_time
+            if state == 'stopped':
+                stopped_time += duration
+            else:
+                moving_time += duration
+            total_fare = calculate_fare(stopped_time, moving_time)
+            print(f"\n Viaje finalizado")
+            print(f"\n Tiempo detenido: {stopped_time:.1f} segundos -- €{stopped_time * 0.02:.2f}")
+            print(f"\n Tiempo en movimiento: {moving_time:.1f} segundos -- €{moving_time * 0.05:.2f}")
+            print(f"\n\nTotal: €{total_fare:.2f}")
+            trip_active = False
+            stopped_time = 0
+            moving_time = 0
+            state = None
+            print("\nNuevo viaje listo. Pulse A para comenzar.")
+        elif opcion == "f":
             print("Gracias por usar Taximeter. ¡Hasta Pronto!")
             break
+        else:
+            print("Comando no reconocido. Use A, B, C, D, E o F.")
 
 taximeter()
