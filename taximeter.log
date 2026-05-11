@@ -1,0 +1,8 @@
+2026-05-09 19:31:09,778  INFO  taximeter:49  Viaje iniciado
+2026-05-09 19:31:22,984  INFO  taximeter:60  Estado cambiado: moving -> stopped (duración tramo: 13.2s)
+2026-05-09 19:31:28,996  INFO  taximeter:60  Estado cambiado: stopped -> moving (duración tramo: 19.2s)
+2026-05-09 19:31:36,181  INFO  taximeter:60  Estado cambiado: moving -> stopped (duración tramo: 26.4s)
+2026-05-09 19:31:45,906  INFO  taximeter:60  Estado cambiado: stopped -> moving (duración tramo: 36.1s)
+2026-05-09 19:32:00,631  INFO  taximeter:78  Viaje finalizado -- duración: 50.8s | detenido: 55.3s (€1.11) | movimiento: 90.4s (€4.52) | total: €5.63
+2026-05-09 19:32:30,145  INFO  taximeter:90  Contadores reiniciados
+2026-05-09 19:32:35,720  INFO  taximeter:93  Programa cerrado por el usuario

@@ -30,6 +30,8 @@ def taximeter():
 # - Comando 'a': arranca en 'moving' (€0.05/seg) porque el taxi sale directo
 # - Comando 'e': ya no finaliza el viaje activo -- si hay viaje activo avisa, si no hay resetea contadores
 # - start_time: ahora se usa para calcular y mostrar la duración total del viaje al finalizar con D
+# - logger: usa __name__ como nombre (nombre del archivo) para identificar el origen del log si el proyecto crece
+# - bugfix state_start_time: al cambiar de estado (b/c) se reinicia state_start_time para medir cada tramo desde su inicio, no desde el inicio del viaje
 
     try:
         while True:
@@ -58,6 +60,7 @@ def taximeter():
                 new_state = 'stopped' if opcion == "b" else 'moving'
                 logger.info("Estado cambiado: %s -> %s (duración tramo: %.1fs)", state, new_state, duration)  # detectar patrones de uso: paradas frecuentes o largas
                 state = new_state
+                state_start_time = time.time()
             elif opcion == "d":
                 if not trip_active:
                     print("No hay un viaje activo. Por favor ingrese el comando A para comenzar.")
@@ -75,7 +78,7 @@ def taximeter():
                 print(f"\n Tiempo en movimiento: {moving_time:.1f} segundos -- €{moving_time * 0.05:.2f}")
                 print(f"\n\nTotal: €{total_fare:.2f}")
                 logger.info("Viaje finalizado -- duración: %.1fs | detenido: %.1fs (€%.2f) | movimiento: %.1fs (€%.2f) | total: €%.2f",
-                            total_duration, stopped_time, stopped_time * 0.02, moving_time, moving_time * 0.05, total_fare)  # resumen completo para auditoría o disputas de tarifa
+                            total_duration, stopped_time, stopped_time * 0.02, moving_time, moving_time * 0.05, total_fare)  # resumen completo para control o disputas de tarifa
                 trip_active = False
                 state = None
             elif opcion == "e":
@@ -97,4 +100,5 @@ def taximeter():
     except Exception:
         logger.exception("Error inesperado")  # capturar cualquier crash no previsto con stack trace completo
 
-taximeter()
+if __name__ == "__main__":
+    taximeter()
