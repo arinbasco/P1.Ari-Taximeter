@@ -6,3 +6,31 @@
 2026-05-09 19:32:00,631  INFO  taximeter:78  Viaje finalizado -- duración: 50.8s | detenido: 55.3s (€1.11) | movimiento: 90.4s (€4.52) | total: €5.63
 2026-05-09 19:32:30,145  INFO  taximeter:90  Contadores reiniciados
 2026-05-09 19:32:35,720  INFO  taximeter:93  Programa cerrado por el usuario
+2026-05-12 15:37:52,193  ERROR  taximeter:129  Error inesperado
+Traceback (most recent call last):
+  File "C:\Users\arii_\Taximeter\taximeter.py", line 44, in taximeter
+    opcion = input("Elija un comando: ").strip().lower()
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+EOFError: EOF when reading a line
+2026-05-12 15:42:19,610  INFO  taximeter:56  Viaje iniciado
+2026-05-12 15:42:24,324  INFO  taximeter:67  Estado cambiado: moving -> stopped (duración tramo: 4.7s)
+2026-05-12 15:42:29,483  INFO  taximeter:67  Estado cambiado: stopped -> moving (duración tramo: 5.2s)
+2026-05-12 15:42:33,427  ERROR  taximeter:129  Error inesperado
+Traceback (most recent call last):
+  File "C:\Users\arii_\Taximeter\taximeter.py", line 80, in taximeter
+    total_fare = calculate_fare(stopped_time, moving_time)
+TypeError: calculate_fare() missing 2 required positional arguments: 'rates_stopped' and 'rate_moving'
+2026-05-12 15:44:28,971  INFO  taximeter:56  Viaje iniciado
+2026-05-12 15:44:30,982  INFO  taximeter:67  Estado cambiado: moving -> stopped (duración tramo: 2.0s)
+2026-05-12 15:44:38,540  INFO  taximeter:67  Estado cambiado: stopped -> moving (duración tramo: 7.6s)
+2026-05-12 15:44:41,605  ERROR  taximeter:129  Error inesperado
+Traceback (most recent call last):
+  File "C:\Users\arii_\Taximeter\taximeter.py", line 80, in taximeter
+    total_fare = calculate_fare(stopped_time, moving_time)
+TypeError: calculate_fare() missing 2 required positional arguments: 'rates_stopped' and 'rate_moving'
+2026-05-12 15:50:13,325  INFO  taximeter:56  Viaje iniciado
+2026-05-12 15:50:16,527  INFO  taximeter:67  Estado cambiado: moving -> stopped (duración tramo: 3.2s)
+2026-05-12 15:50:22,929  INFO  taximeter:67  Estado cambiado: stopped -> moving (duración tramo: 6.4s)
+2026-05-12 15:50:26,558  INFO  taximeter:86  Viaje finalizado -- duración: 13.2s | detenido: 6.4s (€0.13) | movimiento: 6.8s (€0.34) | total: €0.94
+2026-05-12 15:51:24,934  INFO  taximeter:106  Contadores reiniciados
+2026-05-12 15:51:37,654  INFO  taximeter:123  Programa cerrado por el usuario

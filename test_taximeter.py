@@ -73,3 +73,12 @@ def test_viaje_multiples_detenciones(mocker):  # Verifica que el taxímetro acum
     assert any("Viaje finalizado" in s for s in printed)
     # moving: 10s(a→b) + 20s(c→b) + 30s(c→d) = 60s | stopped: 20s(b→c) + 20s(b→c) = 40s → €3.80
     assert any(f"€{calculate_fare(40, 60):.2f}" in s for s in printed)
+
+def test_configurar_tarifas(mocker):  # Verifica que T actualiza las tarifas cuando se confirma con 1
+    mock_print = mocker.patch("builtins.print")
+    mocker.patch("taximeter.load_rates", return_value=(0.02, 0.05))
+    mocker.patch("builtins.open", mocker.mock_open())
+    mocker.patch("builtins.input", side_effect=["t", "0.03", "0.06", "1", "f"])
+    taximeter()
+    printed = [str(c) for c in mock_print.call_args_list]
+    assert any("Tarifas actualizadas correctamente" in s for s in printed)

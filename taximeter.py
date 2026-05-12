@@ -9,14 +9,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-def calculate_fare(seconds_stopped, seconds_moving):
-    fare = seconds_stopped * 0.02 + seconds_moving * 0.05
+def load_rates():
+    with open("tarifas.txt", "r") as file:
+        lines = file.readlines()
+    return float(lines[0]), float(lines[1])
+
+def calculate_fare(seconds_stopped, seconds_moving, rates_stopped=0.02, rate_moving=0.05):
+    fare = seconds_stopped * rates_stopped + seconds_moving * rate_moving
     return fare
 
 def taximeter():
     print("Bienvenidxs a TaxiMeter".center(len("La forma más justa de calcular el precio de tu viaje")))
     print("La forma mas justa de calcular el precio de tu viaje")
-    print("[A] Comenzar viaje\n[B] Detener\n[C] Continuar\n[D] Finalizar\n[E] Nuevo viaje\n[F] Salir de TaxiMeter")
+    print("[A] Comenzar viaje\n[B] Detener\n[C] Continuar\n[D] Finalizar\n[E] Nuevo viaje\n[T] Configurar tarifas\n[F] Salir de TaxiMeter")
 
     trip_active = False
     start_time = 0
@@ -24,6 +29,7 @@ def taximeter():
     moving_time = 0
     state = None
     state_start_time = 0
+    rate_stopped, rate_moving = load_rates()
 
     # DIFERENCIAS CON EL EJEMPLO
     # - Comandos: letras únicas (a,b,c,d,e,f) en vez de palabras completas
@@ -71,11 +77,11 @@ def taximeter():
                 else:
                     moving_time += duration
                 total_duration = time.time() - start_time
-                total_fare = calculate_fare(stopped_time, moving_time)
+                total_fare = calculate_fare(stopped_time, moving_time, rate_stopped, rate_moving)
                 print(f"\n Viaje finalizado")
                 print(f"\n Duración total: {total_duration:.1f} segundos")
-                print(f"\n Tiempo detenido: {stopped_time:.1f} segundos -- €{stopped_time * 0.02:.2f}")
-                print(f"\n Tiempo en movimiento: {moving_time:.1f} segundos -- €{moving_time * 0.05:.2f}")
+                print(f"\n Tiempo detenido: {stopped_time:.1f} segundos -- €{stopped_time * rate_stopped:.2f}")
+                print(f"\n Tiempo en movimiento: {moving_time:.1f} segundos -- €{moving_time * rate_moving:.2f}")
                 print(f"\n\nTotal: €{total_fare:.2f}")
                 logger.info("Viaje finalizado -- duración: %.1fs | detenido: %.1fs (€%.2f) | movimiento: %.1fs (€%.2f) | total: €%.2f",
                             total_duration, stopped_time, stopped_time * 0.02, moving_time, moving_time * 0.05, total_fare)  # resumen completo para control o disputas de tarifa
@@ -98,6 +104,20 @@ def taximeter():
                     state = None
                     print("Pulse A para comenzar un nuevo viaje.")
                     logger.info("Contadores reiniciados")  # confirmar que el reset fue intencional y no un bug
+            elif opcion == "t":
+                if trip_active:
+                    print("Hay un viaje en curso. Finalizalo antes de cambiar las tarifas.")
+                    continue
+                new_rate_stopped = input(f"Tarifa por segundo detenido (actual: €{rate_stopped}): ").strip()
+                new_rate_moving = input(f"Tarifa por segundo en movimiento (actual: €{rate_moving}): ").strip()
+                confirmacion = input("Ingrese 1 para confirmar o cualquier tecla para cancelar: ").strip()
+                if confirmacion == "1":
+                    rate_stopped = float(new_rate_stopped)
+                    rate_moving = float(new_rate_moving)
+                    with open("tarifas.txt", "w") as file:
+                        file.write(f"{rate_stopped}\n{rate_moving}\n")
+                    print("Tarifas actualizadas correctamente.")
+                    logger.info("Tarifas actualizadas -- parado: €%.2f | movimiento: €%.2f", rate_stopped, rate_moving)
             elif opcion == "f":
                 print("Gracias por usar Taximeter. ¡Hasta Pronto!")
                 logger.info("Programa cerrado por el usuario")  # distinguir cierre normal de un crash
