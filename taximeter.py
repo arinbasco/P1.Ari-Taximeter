@@ -1,5 +1,6 @@
 import time
 import logging
+from datetime import datetime
 
 logging.basicConfig(
     filename='taximeter.log',
@@ -24,14 +25,13 @@ def taximeter():
     state = None
     state_start_time = 0
 
-# DIFERENCIAS CON EL EJEMPLO
-# - Comandos: letras únicas (a,b,c,d,e,f) en vez de palabras completas
-# - Idioma: mensajes al usuario en español
-# - Comando 'a': arranca en 'moving' (€0.05/seg) porque el taxi sale directo
-# - Comando 'e': ya no finaliza el viaje activo -- si hay viaje activo avisa, si no hay resetea contadores
-# - start_time: ahora se usa para calcular y mostrar la duración total del viaje al finalizar con D
-# - logger: usa __name__ como nombre (nombre del archivo) para identificar el origen del log si el proyecto crece
-# - bugfix state_start_time: al cambiar de estado (b/c) se reinicia state_start_time para medir cada tramo desde su inicio, no desde el inicio del viaje
+    # DIFERENCIAS CON EL EJEMPLO
+    # - Comandos: letras únicas (a,b,c,d,e,f) en vez de palabras completas
+    # - Idioma: mensajes al usuario en español
+    # - Comando 'a': arranca en 'moving' (€0.05/seg) porque el taxi sale directo
+    # - Comando 'e': ya no finaliza el viaje activo -- si hay viaje activo avisa, si no hay resetea contadores
+    # - start_time: ahora se usa para calcular y mostrar la duración total del viaje al finalizar con D
+    # - logger: usa __name__ como nombre (nombre del archivo) para identificar el origen del log si el proyecto crece
 
     try:
         while True:
@@ -81,6 +81,14 @@ def taximeter():
                             total_duration, stopped_time, stopped_time * 0.02, moving_time, moving_time * 0.05, total_fare)  # resumen completo para control o disputas de tarifa
                 trip_active = False
                 state = None
+                with open("historial.txt", "a") as file:
+                    file.write(
+                        f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} | "
+                        f"Duración: {total_duration:.1f}s | "
+                        f"Parado: {stopped_time:.1f}s (€{stopped_time * 0.02:.2f}) | "
+                        f"Movimiento: {moving_time:.1f}s (€{moving_time * 0.05:.2f}) | "
+                        f"Total: €{total_fare:.2f}\n"
+                    )
             elif opcion == "e":
                 if trip_active:
                     print("Viaje en curso. Pulse D para finalizarlo.")
