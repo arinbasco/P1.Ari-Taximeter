@@ -34,3 +34,15 @@ TypeError: calculate_fare() missing 2 required positional arguments: 'rates_stop
 2026-05-12 15:50:26,558  INFO  taximeter:86  Viaje finalizado -- duración: 13.2s | detenido: 6.4s (€0.13) | movimiento: 6.8s (€0.34) | total: €0.94
 2026-05-12 15:51:24,934  INFO  taximeter:106  Contadores reiniciados
 2026-05-12 15:51:37,654  INFO  taximeter:123  Programa cerrado por el usuario
+2026-05-13 11:13:01,526  INFO  taximeter:120  Tarifas actualizadas -- parado: €0.05 | movimiento: €0.10
+2026-05-13 11:13:04,336  INFO  taximeter:56  Viaje iniciado
+2026-05-13 11:13:14,660  INFO  taximeter:67  Estado cambiado: moving -> moving (duración tramo: 10.3s)
+2026-05-13 11:13:19,790  INFO  taximeter:67  Estado cambiado: moving -> stopped (duración tramo: 5.1s)
+2026-05-13 11:13:26,147  INFO  taximeter:67  Estado cambiado: stopped -> moving (duración tramo: 6.4s)
+2026-05-13 11:13:29,216  WARNING  taximeter:126  Comando no reconocido: 'h'
+2026-05-13 11:13:41,593  INFO  taximeter:86  Viaje finalizado -- duración: 37.3s | detenido: 6.4s (€0.13) | movimiento: 30.9s (€1.54) | total: €3.41
+2026-05-13 11:14:05,219  INFO  taximeter:120  Tarifas actualizadas -- parado: €0.02 | movimiento: €0.05
+2026-05-13 11:14:14,427  WARNING  taximeter:126  Comando no reconocido: 'h'
+2026-05-13 11:14:25,694  INFO  taximeter:123  Programa cerrado por el usuario
+2026-05-13 11:16:43,348  INFO  taximeter:56  Viaje iniciado
+2026-05-13 11:16:52,994  INFO  taximeter:123  Programa cerrado por el usuario

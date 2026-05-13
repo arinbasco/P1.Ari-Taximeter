@@ -17,7 +17,7 @@ def test_viaje_basico(mocker):
 
 def test_iniciar_viaje_ya_activo(mocker):  # Verifica que A no inicia un segundo viaje si ya hay uno activo
     mock_print = mocker.patch("builtins.print")
-    mocker.patch("builtins.input", side_effect=["a", "a", "f"])
+    mocker.patch("builtins.input", side_effect=["a", "a", "d", "f"])
     mocker.patch("time.time", return_value=0)
     taximeter()
     printed = [str(c) for c in mock_print.call_args_list]
@@ -32,14 +32,14 @@ def test_finalizar_sin_viaje_activo(mocker):  # Verifica que D avisa si se inten
 
 def test_detener_sin_viaje_activo(mocker):  # Verifica que B avisa si se intenta detener sin viaje activo
     mock_print = mocker.patch("builtins.print")
-    mocker.patch("builtins.input", side_effect=["b", "f"])
+    mocker.patch("builtins.input", side_effect=["b","d","f"])
     taximeter()
     printed = [str(c) for c in mock_print.call_args_list]
     assert any("No hay un viaje activo" in s for s in printed)
 
 def test_comando_invalido(mocker):  # Verifica que un comando desconocido muestra el mensaje de error apropiado
     mock_print = mocker.patch("builtins.print")
-    mocker.patch("builtins.input", side_effect=["x", "f"])
+    mocker.patch("builtins.input", side_effect=["x","d", "f"])
     taximeter()
     printed = [str(c) for c in mock_print.call_args_list]
     assert any("Comando no reconocido" in s for s in printed)
@@ -73,6 +73,24 @@ def test_viaje_multiples_detenciones(mocker):  # Verifica que el taxímetro acum
     assert any("Viaje finalizado" in s for s in printed)
     # moving: 10s(a→b) + 20s(c→b) + 30s(c→d) = 60s | stopped: 20s(b→c) + 20s(b→c) = 40s → €3.80
     assert any(f"€{calculate_fare(40, 60):.2f}" in s for s in printed)
+
+
+def test_C_durante_A_activo(mocker):  # Verifica que c no inicia si el estado actual es == moving
+    mock_print = mocker.patch("builtins.print")
+    mocker.patch("builtins.input", side_effect=["a", "c", "d","f"])
+    mocker.patch("time.time", return_value=0)
+    taximeter()
+    printed = [str(c) for c in mock_print.call_args_list]
+    assert any("Viaje en progreso. Para detenerlo ingrese B. Si desea finalizarlo ingrese D" in s for s in printed)
+
+def test_b_durante_viaje_detenido(mocker):  # Verifica que b no inicia si el estado actual es == stopped
+    mock_print = mocker.patch("builtins.print")
+    mocker.patch("builtins.input", side_effect=["a", "b", "b", "d","f"])
+    mocker.patch("time.time", return_value=0)
+    taximeter()
+    printed = [str(c) for c in mock_print.call_args_list]
+    assert any("El viaje esta detenido. Por favor ingrese el comando C para retomarlo o D para finalizar" in s for s in printed)
+
 
 def test_configurar_tarifas(mocker):  # Verifica que T actualiza las tarifas cuando se confirma con 1
     mock_print = mocker.patch("builtins.print")
