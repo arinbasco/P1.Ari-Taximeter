@@ -55,7 +55,7 @@ def taximeter():
                 print("Inicio de viaje")
                 logger.info("Viaje iniciado")  # trazabilidad: saber cuándo arrancó cada viaje
             elif opcion == "b":
-                if not trip_active:
+                if not trip_active: 
                     print("No hay un viaje activo. Por favor ingrese el comando A para comenzar.")
                     continue
                 if state == "stopped":
@@ -133,13 +133,13 @@ def taximeter():
                     logger.info("Tarifas actualizadas -- parado: €%.2f | movimiento: €%.2f", rate_stopped, rate_moving)
             elif opcion == "f":
                 if trip_active:
-                    print("Hay un viaje en curso. Finalizalo antes de apagar el Taximeter.")
+                    print("Hay un viaje en curso. Finalizalo antes de apagar el Ta.")
                     continue
                 print("Gracias por usar Taximeter. ¡Hasta Pronto!")
                 logger.info("Programa cerrado por el usuario")  # distinguir cierre normal de un crash
                 break
             else:
-                logger.warning("Comando no reconocido: '%s'", opcion)  # detectar errores de tipeo o uso incorrecto
+                logger.warning("Comando no reconocido: '%s'", opcion)  # detectar errores de tipeo o uso incorrectoen
                 print("Comando no reconocido. Use A, B, C, D, E, T o F.")
     except Exception:
         logger.exception("Error inesperado")  # capturar cualquier crash no previsto con stack trace completo
