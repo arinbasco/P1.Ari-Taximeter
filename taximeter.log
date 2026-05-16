@@ -97,3 +97,26 @@ TypeError: calculate_fare() missing 2 required positional arguments: 'rates_stop
 2026-05-16 09:20:12,224  INFO  start_trip:109  Viaje iniciado
 2026-05-16 09:20:35,035  INFO  stop_trip:121  Estado cambiado: moving -> stopped (duración tramo: 22.8s)
 2026-05-16 09:20:37,279  INFO  end_trip:155  Viaje finalizado -- duración: 25.1s | detenido: 2.2s (€0.04) | movimiento: 22.8s (€1.14) | total: €1.19
+2026-05-16 10:02:13,245  INFO  start_trip:119  Viaje iniciado
+2026-05-16 10:02:20,595  INFO  stop_trip:131  Estado cambiado: moving -> stopped (duración tramo: 7.4s)
+2026-05-16 10:02:27,312  INFO  continue_trip:145  Estado cambiado: stopped -> moving (duración tramo: 6.7s)
+2026-05-16 10:02:31,371  INFO  end_trip:165  Viaje finalizado -- duración: 18.1s | detenido: 6.7s (€0.13) | movimiento: 11.4s (€0.57) | total: €0.70
+2026-05-16 10:02:49,951  INFO  reset:187  Contadores reiniciados
+2026-05-16 10:02:54,344  INFO  start_trip:119  Viaje iniciado
+2026-05-16 10:03:17,103  INFO  end_trip:165  Viaje finalizado -- duración: 22.8s | detenido: 0.0s (€0.00) | movimiento: 22.8s (€1.14) | total: €1.14
+2026-05-16 10:03:21,170  INFO  run:228  Programa cerrado por el usuario
+2026-05-16 10:15:47,070  INFO  start_trip:120  Viaje iniciado
+2026-05-16 10:15:59,452  INFO  stop_trip:132  Estado cambiado: moving -> stopped (duración tramo: 12.4s)
+2026-05-16 10:16:05,302  INFO  continue_trip:146  Estado cambiado: stopped -> moving (duración tramo: 5.8s)
+2026-05-16 10:16:13,985  INFO  end_trip:166  Viaje finalizado -- duración: 26.9s | detenido: 5.8s (€0.12) | movimiento: 21.1s (€1.05) | total: €1.17
+2026-05-16 10:16:20,250  INFO  reset:188  Contadores reiniciados
+2026-05-16 10:16:48,145  INFO  run:229  Programa cerrado por el usuario
+2026-05-16 10:20:12,073  INFO  start_trip:120  Viaje iniciado
+2026-05-16 10:20:19,864  INFO  stop_trip:132  Estado cambiado: moving -> stopped (duración tramo: 7.8s)
+2026-05-16 10:20:26,165  INFO  continue_trip:146  Estado cambiado: stopped -> moving (duración tramo: 6.3s)
+2026-05-16 10:20:31,783  INFO  end_trip:166  Viaje finalizado -- duración: 19.7s | detenido: 6.3s (€0.13) | movimiento: 13.4s (€0.67) | total: €0.80
+2026-05-16 10:20:52,555  INFO  run:236  Programa cerrado por el usuario
+2026-05-16 10:23:47,203  INFO  start_trip:120  Viaje iniciado
+2026-05-16 10:24:01,135  INFO  end_trip:166  Viaje finalizado -- duración: 13.9s | detenido: 0.0s (€0.00) | movimiento: 13.9s (€0.70) | total: €0.70
+2026-05-16 10:24:03,586  INFO  reset:195  Contadores reiniciados
+2026-05-16 10:24:07,816  INFO  run:236  Programa cerrado por el usuario

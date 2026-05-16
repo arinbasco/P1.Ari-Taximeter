@@ -33,3 +33,6 @@
 2026-05-16 08:54:44 | Duración: 16.7s | Parado: 4.1s (€0.08) | Movimiento: 12.7s (€0.63) | Total: €0.71
 2026-05-16 09:00:03 | Duración: 7.2s | Parado: 0.0s (€0.00) | Movimiento: 7.2s (€0.36) | Total: €0.36
 2026-05-16 09:20:37 | Duración: 25.1s | Parado: 2.2s (€0.04) | Movimiento: 22.8s (€1.14) | Total: €1.19
+2026-05-16 10:02:31 | Duración: 18.1s | Parado: 6.7s (€0.13) | Movimiento: 11.4s (€0.57) | Total: €0.70
+2026-05-16 10:03:17 | Duración: 22.8s | Parado: 0.0s (€0.00) | Movimiento: 22.8s (€1.14) | Total: €1.14
+2026-05-16 10:16:13 | Duración: 26.9s | Parado: 5.8s (€0.12) | Movimiento: 21.1s (€1.05) | Total: €1.17

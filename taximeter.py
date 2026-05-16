@@ -11,17 +11,34 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+def init_db():
+    conn = sqlite3.connect("taximeter.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE,
+            password TEXT
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS trips (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            fecha TEXT,
+            duracion REAL,
+            tiempo_detenido REAL,
+            tiempo_movimiento REAL,
+            precio REAL
+        )
+    """)
+    conn.commit()
+    conn.close()
+
 
 def create_user ():
     conn = sqlite3.connect("taximeter.db")
     cursor = conn.cursor()
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE,
-        password TEXT
-    )
-    """)
     username = input("Usuario: ")
     password = input("Contraseña: ")
     hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
@@ -41,13 +58,6 @@ def create_user ():
 def authenticate():
     conn = sqlite3.connect("taximeter.db")
     cursor = conn.cursor()
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE,
-        password TEXT
-    )
-    """)
     print("=== Taximeter ===\nInicio de sesión")
     username = input("Usuario: ")
     password = input("Contraseña: ")
@@ -56,15 +66,15 @@ def authenticate():
     if user:
         if bcrypt.checkpw(password.encode(), user[2]):
             conn.close()
-            return True
+            return user[0]
         else: 
             conn.close()
             print("Contraseña incorrecta.")
-            return False
+            return None
     else:
         print("Usuario no encontrado")
         conn.close()
-        return False
+        return None
 
 
 class Taximeter:
@@ -77,6 +87,7 @@ class Taximeter:
         self.state = None
         self.state_start_time = 0
         self.rate_stopped, self.rate_moving = self.load_rates()
+        self.user_id = None
 
     def load_rates(self):
         with open("tarifas.txt", "r") as file:
@@ -157,14 +168,21 @@ class Taximeter:
                     self.moving_time, self.moving_time * self.rate_moving, total_fare)
         self.trip_active = False
         self.state = None
-        with open("historial.txt", "a") as file:
-            file.write(
-                f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} | "
-                f"Duración: {total_duration:.1f}s | "
-                f"Parado: {self.stopped_time:.1f}s (€{self.stopped_time * self.rate_stopped:.2f}) | "
-                f"Movimiento: {self.moving_time:.1f}s (€{self.moving_time * self.rate_moving:.2f}) | "
-                f"Total: €{total_fare:.2f}\n"
-            )
+        conn = sqlite3.connect("taximeter.db")
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO trips (user_id, fecha, duracion, tiempo_detenido, tiempo_movimiento, precio)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (
+            self.user_id,
+            datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            round(total_duration, 1),
+            round(self.stopped_time, 1),
+            round(self.moving_time, 1),
+            round(total_fare, 2)
+        ))
+        conn.commit()
+        conn.close()
 
     def reset(self):
         if self.trip_active:
@@ -225,12 +243,15 @@ class Taximeter:
 
 
 if __name__ == "__main__":
+    init_db()
     opcion = input("[1] Iniciar sesión\n[2] Registrar usuario\n[F] Salir\nElegí un comando: ").strip().lower()
     if opcion == "1":
         intentos = 0
         while intentos < 3:
-            if authenticate():
+            user_id = authenticate()
+            if user_id:
                 taxi = Taximeter()
+                taxi.user_id = user_id
                 taxi.run()
                 break
             else:
@@ -243,8 +264,10 @@ if __name__ == "__main__":
                 break
         intentos = 0
         while intentos < 3:
-            if authenticate():
+            user_id = authenticate()
+            if user_id:
                 taxi = Taximeter()
+                taxi.user_id = user_id
                 taxi.run()
                 break
             else:
