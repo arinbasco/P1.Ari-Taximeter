@@ -69,3 +69,31 @@ TypeError: calculate_fare() missing 2 required positional arguments: 'rates_stop
 2026-05-16 05:59:32,733  INFO  run:207  Programa cerrado por el usuario
 2026-05-16 06:46:48,217  INFO  run:208  Programa cerrado por el usuario
 2026-05-16 06:54:21,829  INFO  run:208  Programa cerrado por el usuario
+2026-05-16 08:31:00,459  INFO  start_trip:100  Viaje iniciado
+2026-05-16 08:31:09,986  INFO  stop_trip:112  Estado cambiado: moving -> stopped (duración tramo: 9.5s)
+2026-05-16 08:31:12,586  INFO  end_trip:146  Viaje finalizado -- duración: 12.1s | detenido: 2.6s (€0.05) | movimiento: 9.5s (€0.48) | total: €0.53
+2026-05-16 08:31:17,838  INFO  reset:168  Contadores reiniciados
+2026-05-16 08:31:20,535  INFO  start_trip:100  Viaje iniciado
+2026-05-16 08:50:14,384  INFO  start_trip:100  Viaje iniciado
+2026-05-16 08:50:17,623  INFO  stop_trip:112  Estado cambiado: moving -> stopped (duración tramo: 3.2s)
+2026-05-16 08:50:19,475  INFO  continue_trip:126  Estado cambiado: stopped -> moving (duración tramo: 1.9s)
+2026-05-16 08:50:21,904  INFO  end_trip:146  Viaje finalizado -- duración: 7.5s | detenido: 1.9s (€0.04) | movimiento: 5.7s (€0.28) | total: €0.32
+2026-05-16 08:52:47,897  INFO  start_trip:100  Viaje iniciado
+2026-05-16 08:52:52,676  INFO  end_trip:146  Viaje finalizado -- duración: 4.8s | detenido: 0.0s (€0.00) | movimiento: 4.8s (€0.24) | total: €0.24
+2026-05-16 08:54:27,522  INFO  start_trip:100  Viaje iniciado
+2026-05-16 08:54:32,681  INFO  stop_trip:112  Estado cambiado: moving -> stopped (duración tramo: 5.2s)
+2026-05-16 08:54:36,739  INFO  continue_trip:126  Estado cambiado: stopped -> moving (duración tramo: 4.1s)
+2026-05-16 08:54:44,241  INFO  end_trip:146  Viaje finalizado -- duración: 16.7s | detenido: 4.1s (€0.08) | movimiento: 12.7s (€0.63) | total: €0.71
+2026-05-16 08:54:46,756  INFO  reset:168  Contadores reiniciados
+2026-05-16 08:59:56,411  INFO  start_trip:100  Viaje iniciado
+2026-05-16 09:00:03,551  INFO  end_trip:146  Viaje finalizado -- duración: 7.2s | detenido: 0.0s (€0.00) | movimiento: 7.2s (€0.36) | total: €0.36
+2026-05-16 09:10:58,690  INFO  start_trip:109  Viaje iniciado
+2026-05-16 09:11:07,417  INFO  stop_trip:121  Estado cambiado: moving -> stopped (duración tramo: 8.7s)
+2026-05-16 09:11:16,782  INFO  continue_trip:135  Estado cambiado: stopped -> moving (duración tramo: 9.4s)
+2026-05-16 09:18:02,474  INFO  start_trip:109  Viaje iniciado
+2026-05-16 09:18:11,291  INFO  stop_trip:121  Estado cambiado: moving -> stopped (duración tramo: 8.8s)
+2026-05-16 09:18:18,911  INFO  continue_trip:135  Estado cambiado: stopped -> moving (duración tramo: 7.6s)
+2026-05-16 09:18:47,523  INFO  start_trip:109  Viaje iniciado
+2026-05-16 09:20:12,224  INFO  start_trip:109  Viaje iniciado
+2026-05-16 09:20:35,035  INFO  stop_trip:121  Estado cambiado: moving -> stopped (duración tramo: 22.8s)
+2026-05-16 09:20:37,279  INFO  end_trip:155  Viaje finalizado -- duración: 25.1s | detenido: 2.2s (€0.04) | movimiento: 22.8s (€1.14) | total: €1.19

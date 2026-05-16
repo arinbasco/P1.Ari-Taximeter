@@ -27,3 +27,9 @@
 2026-05-16 03:29:41 | Duración: 0.0s | Parado: 0.0s (€0.00) | Movimiento: 0.0s (€0.00) | Total: €0.00
 2026-05-16 05:40:04 | Duración: 23.0s | Parado: 9.4s (€0.19) | Movimiento: 13.6s (€0.68) | Total: €0.87
 2026-05-16 05:58:09 | Duración: 31.2s | Parado: 7.6s (€0.15) | Movimiento: 23.6s (€1.18) | Total: €1.33
+2026-05-16 08:31:12 | Duración: 12.1s | Parado: 2.6s (€0.05) | Movimiento: 9.5s (€0.48) | Total: €0.53
+2026-05-16 08:50:21 | Duración: 7.5s | Parado: 1.9s (€0.04) | Movimiento: 5.7s (€0.28) | Total: €0.32
+2026-05-16 08:52:52 | Duración: 4.8s | Parado: 0.0s (€0.00) | Movimiento: 4.8s (€0.24) | Total: €0.24
+2026-05-16 08:54:44 | Duración: 16.7s | Parado: 4.1s (€0.08) | Movimiento: 12.7s (€0.63) | Total: €0.71
+2026-05-16 09:00:03 | Duración: 7.2s | Parado: 0.0s (€0.00) | Movimiento: 7.2s (€0.36) | Total: €0.36
+2026-05-16 09:20:37 | Duración: 25.1s | Parado: 2.2s (€0.04) | Movimiento: 22.8s (€1.14) | Total: €1.19

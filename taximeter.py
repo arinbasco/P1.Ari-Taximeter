@@ -86,6 +86,15 @@ class Taximeter:
     def calculate_fare(self):
         return self.stopped_time * self.rate_stopped + self.moving_time * self.rate_moving
 
+    def get_current_fare(self):
+        if not self.trip_active:
+            return self.calculate_fare()
+        elapsed = time.time() - self.state_start_time
+        if self.state == 'moving':
+            return (self.moving_time + elapsed) * self.rate_moving + self.stopped_time * self.rate_stopped
+        else:
+            return self.moving_time * self.rate_moving + (self.stopped_time + elapsed) * self.rate_stopped
+
     def start_trip(self):
         if self.trip_active:
             print("Viaje en progreso")
