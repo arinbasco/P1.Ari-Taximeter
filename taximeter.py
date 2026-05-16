@@ -1,6 +1,8 @@
 import time
 import logging
 from datetime import datetime
+import sqlite3
+import bcrypt
 
 logging.basicConfig(
     filename='taximeter.log',
@@ -8,6 +10,61 @@ logging.basicConfig(
     format='%(asctime)s  %(levelname)s  %(funcName)s:%(lineno)d  %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+
+def create_user ():
+    conn = sqlite3.connect("taximeter.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE,
+        password TEXT
+    )
+    """)
+    username = input("Usuario: ")
+    password = input("Contraseña: ")
+    hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    try:
+        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, hashed))
+        conn.commit()
+        conn.close()
+        print("Usuario creado correctamente.")
+        return True
+    except Exception as e:
+        print("El usuario ya esta registrado. Intente nuevamente")
+        conn.close()
+        return False
+
+
+
+def authenticate():
+    conn = sqlite3.connect("taximeter.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE,
+        password TEXT
+    )
+    """)
+    print("=== Taximeter ===\nInicio de sesión")
+    username = input("Usuario: ")
+    password = input("Contraseña: ")
+    cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+    user = cursor.fetchone()
+    if user:
+        if bcrypt.checkpw(password.encode(), user[2]):
+            conn.close()
+            return True
+        else: 
+            conn.close()
+            print("Contraseña incorrecta.")
+            return False
+    else:
+        print("Usuario no encontrado")
+        conn.close()
+        return False
 
 
 class Taximeter:
@@ -159,5 +216,32 @@ class Taximeter:
 
 
 if __name__ == "__main__":
-    taxi = Taximeter()
-    taxi.run()
+    opcion = input("[1] Iniciar sesión\n[2] Registrar usuario\n[F] Salir\nElegí un comando: ").strip().lower()
+    if opcion == "1":
+        intentos = 0
+        while intentos < 3:
+            if authenticate():
+                taxi = Taximeter()
+                taxi.run()
+                break
+            else:
+                intentos += 1
+        else:
+            print("Superaste la cantidad de intentos fallidos. Vuelve a iniciar Taximeter.")
+    elif opcion == "2":
+        while True:
+            if create_user():
+                break
+        intentos = 0
+        while intentos < 3:
+            if authenticate():
+                taxi = Taximeter()
+                taxi.run()
+                break
+            else:
+                intentos += 1
+        else:
+            print("Superaste la cantidad de intentos fallidos. Vuelve a iniciar Taximeter.")
+    elif opcion == "f":
+        print("Gracias por usar Taximeter. ¡Hasta Pronto!")
+        exit()

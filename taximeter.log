@@ -54,3 +54,18 @@ TypeError: calculate_fare() missing 2 required positional arguments: 'rates_stop
 2026-05-13 17:10:44,084  INFO  taximeter:56  Viaje iniciado
 2026-05-13 17:10:50,506  INFO  taximeter:99  Viaje finalizado -- duración: 6.4s | detenido: 0.0s (€0.00) | movimiento: 6.4s (€0.32) | total: €0.32
 2026-05-13 17:10:52,614  INFO  taximeter:139  Programa cerrado por el usuario
+2026-05-16 05:39:41,886  INFO  start_trip:96  Viaje iniciado
+2026-05-16 05:39:51,618  INFO  stop_trip:108  Estado cambiado: moving -> stopped (duración tramo: 9.7s)
+2026-05-16 05:40:01,053  INFO  continue_trip:122  Estado cambiado: stopped -> moving (duración tramo: 9.4s)
+2026-05-16 05:40:04,909  INFO  end_trip:142  Viaje finalizado -- duración: 23.0s | detenido: 9.4s (€0.19) | movimiento: 13.6s (€0.68) | total: €0.87
+2026-05-16 05:40:09,083  INFO  reset:164  Contadores reiniciados
+2026-05-16 05:40:16,798  INFO  run:205  Programa cerrado por el usuario
+2026-05-16 05:41:51,864  INFO  run:205  Programa cerrado por el usuario
+2026-05-16 05:57:37,851  INFO  start_trip:98  Viaje iniciado
+2026-05-16 05:57:58,100  INFO  stop_trip:110  Estado cambiado: moving -> stopped (duración tramo: 20.2s)
+2026-05-16 05:58:05,743  INFO  continue_trip:124  Estado cambiado: stopped -> moving (duración tramo: 7.6s)
+2026-05-16 05:58:09,088  INFO  end_trip:144  Viaje finalizado -- duración: 31.2s | detenido: 7.6s (€0.15) | movimiento: 23.6s (€1.18) | total: €1.33
+2026-05-16 05:58:38,737  INFO  run:207  Programa cerrado por el usuario
+2026-05-16 05:59:32,733  INFO  run:207  Programa cerrado por el usuario
+2026-05-16 06:46:48,217  INFO  run:208  Programa cerrado por el usuario
+2026-05-16 06:54:21,829  INFO  run:208  Programa cerrado por el usuario
