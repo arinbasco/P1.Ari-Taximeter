@@ -70,10 +70,20 @@ def continuar():
 def finalizar():
     if not taxi.trip_active:
         flash("No hay un viaje activo.")
-    else:
-        taxi.end_trip()
-        flash("Viaje finalizado.")
-    return redirect(url_for('index'))
+        return redirect(url_for('index'))
+    taxi.end_trip()
+    return redirect(url_for('resumen'))
+
+@app.route('/resumen')
+def resumen():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    conn = sqlite3.connect("taximeter.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT fecha, duracion, tiempo_detenido, tiempo_movimiento, precio FROM trips WHERE user_id = ? ORDER BY id DESC LIMIT 1", (session['user_id'],))
+    viaje = cursor.fetchone()
+    conn.close()
+    return render_template('resumen.html', viaje=viaje)
 
 @app.route('/reset', methods=['POST'])
 def reset():
@@ -119,6 +129,7 @@ def tarifas():
     return render_template('tarifas.html',
             rate_stopped=taxi.rate_stopped,
             rate_moving=taxi.rate_moving)
+
 @app.route('/historial')
 def historial():
     if 'user_id' not in session:

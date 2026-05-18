@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen del viaje</title>
+</head>
+<body>
+    <h1>Viaje finalizado</h1>
+
+    {% if viaje %}
+    <p><strong>Fecha:</strong> {{ viaje[0] }}</p>
+    <p><strong>Duración total:</strong> {{ viaje[1] }} segundos</p>
+    <p><strong>Tiempo detenido:</strong> {{ viaje[2] }} segundos</p>
+    <p><strong>Tiempo en movimiento:</strong> {{ viaje[3] }} segundos</p>
+    <h2>Total a cobrar: € {{ viaje[4] }}</h2>
+    {% else %}
+    <p>No se encontró información del viaje.</p>
+    {% endif %}
+
+    <a href="/">Volver al inicio</a>
+</body>
+</html>

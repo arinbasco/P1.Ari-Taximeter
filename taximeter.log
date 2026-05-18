@@ -2589,3 +2589,41 @@ TypeError: calculate_fare() missing 2 required positional arguments: 'rates_stop
 2026-05-18 19:31:58,948  INFO  _log:97  127.0.0.1 - - [18/May/2026 19:31:58] "GET /precio HTTP/1.1" 200 -
 2026-05-18 19:31:59,947  INFO  _log:97  127.0.0.1 - - [18/May/2026 19:31:59] "GET /precio HTTP/1.1" 200 -
 2026-05-18 19:32:34,945  INFO  _log:97  127.0.0.1 - - [18/May/2026 19:32:34] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:05,719  INFO  _log:97  [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-18 20:03:05,720  INFO  _log:97  [33mPress CTRL+C to quit[0m
+2026-05-18 20:03:05,723  INFO  _log:97   * Restarting with stat
+2026-05-18 20:03:06,415  WARNING  _log:97   * Debugger is active!
+2026-05-18 20:03:06,426  INFO  _log:97   * Debugger PIN: 133-569-084
+2026-05-18 20:03:09,973  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:09] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:10,459  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:10] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:11,420  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:11] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:12,126  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:12] "GET / HTTP/1.1" 200 -
+2026-05-18 20:03:13,163  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:13] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:14,158  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:14] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:15,166  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:15] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:15,286  INFO  start_trip:120  Viaje iniciado
+2026-05-18 20:03:15,288  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:15] "[32mPOST /iniciar HTTP/1.1[0m" 302 -
+2026-05-18 20:03:15,296  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:15] "GET / HTTP/1.1" 200 -
+2026-05-18 20:03:16,330  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:16] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:17,321  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:17] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:18,327  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:18] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:19,321  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:19] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:20,322  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:20] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:21,322  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:21] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:22,321  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:22] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:23,321  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:23] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:24,322  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:24] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:25,333  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:25] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:26,016  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:26] "[32mPOST /continuar HTTP/1.1[0m" 302 -
+2026-05-18 20:03:26,023  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:26] "GET / HTTP/1.1" 200 -
+2026-05-18 20:03:27,050  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:27] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:28,058  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:28] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:29,049  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:29] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:29,672  INFO  stop_trip:132  Estado cambiado: moving -> stopped (duración tramo: 14.4s)
+2026-05-18 20:03:29,673  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:29] "[32mPOST /detener HTTP/1.1[0m" 302 -
+2026-05-18 20:03:29,682  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:29] "GET / HTTP/1.1" 200 -
+2026-05-18 20:03:30,674  INFO  end_trip:166  Viaje finalizado -- duración: 15.4s | detenido: 1.0s (€0.02) | movimiento: 14.4s (€0.72) | total: €0.74
+2026-05-18 20:03:30,696  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:30] "[32mPOST /finalizar HTTP/1.1[0m" 302 -
+2026-05-18 20:03:30,715  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:30] "GET /precio HTTP/1.1" 200 -
+2026-05-18 20:03:30,731  INFO  _log:97  127.0.0.1 - - [18/May/2026 20:03:30] "GET /resumen HTTP/1.1" 200 -
