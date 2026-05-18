@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de viajes</title>
+</head>
+<body>
+    <h1>Historial de viajes</h1>
+
+    {% if viajes %}
+    <table border="1">
+        <tr>
+            <th>Fecha</th>
+            <th>Duración (s)</th>
+            <th>Tiempo detenido (s)</th>
+            <th>Tiempo en movimiento (s)</th>
+            <th>Precio (€)</th>
+        </tr>
+        {% for viaje in viajes %}
+        <tr>
+            <td>{{ viaje[0] }}</td>
+            <td>{{ viaje[1] }}</td>
+            <td>{{ viaje[2] }}</td>
+            <td>{{ viaje[3] }}</td>
+            <td>{{ viaje[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No hay viajes registrados todavía.</p>
+    {% endif %}
+
+    <a href="/">Volver</a>
+</body>
+</html>
