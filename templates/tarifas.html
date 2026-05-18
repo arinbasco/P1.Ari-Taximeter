@@ -2,78 +2,46 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Taximeter - Tarifas</title>
-    <style>
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-overlay.activo {
-            display: flex;
-        }
-        .modal {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-            min-width: 300px;
-        }
-        .modal h3 {
-            margin-top: 0;
-        }
-        .modal-botones {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-    </style>
+    <title>Tarifas - Taximeter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Modificar tarifas</h1>
-
-    {% for mensaje in get_flashed_messages() %}
-        <p>{{ mensaje }}</p>
-    {% endfor %}
-
-    <form id="form-tarifas" method="POST">
-        <input type="hidden" name="confirmacion" value="1">
-        <label>Tarifa por segundo detenido (actual: €{{ rate_stopped }})</label><br>
-        <input type="number" step="0.01" name="rate_stopped" required><br><br>
-        <label>Tarifa por segundo en movimiento (actual: €{{ rate_moving }})</label><br>
-        <input type="number" step="0.01" name="rate_moving" required><br><br>
-        <button type="button" onclick="abrirModal()">Guardar cambios</button>
-    </form>
-
-    <a href="/">Volver</a>
-
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal">
-            <h3>¿Confirmás los cambios?</h3>
-            <p>Se actualizarán las tarifas con los nuevos valores.</p>
-            <div class="modal-botones">
-                <button onclick="document.getElementById('form-tarifas').submit()">Sí, actualizar</button>
-                <button onclick="cerrarModal()">Cancelar</button>
-            </div>
+    <div class="ticket">
+        <div class="screen-tag">CONFIG</div>
+        <div class="ticket-head">
+            <div class="brand-mark">TX · MADRID</div>
+            <h1 class="brand-title">TARIFAS</h1>
+            <div class="brand-sub">EDICIÓN DE PRECIOS</div>
         </div>
-    </div>
 
-    <script>
-        function abrirModal() {
-            var form = document.getElementById('form-tarifas');
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-            document.getElementById('modal-overlay').classList.add('activo');
-        }
-        function cerrarModal() {
-            document.getElementById('modal-overlay').classList.remove('activo');
-        }
-    </script>
+        {% for mensaje in get_flashed_messages() %}
+            <div class="flash">{{ mensaje }}</div>
+        {% endfor %}
+
+        <form method="POST">
+            <div class="field-row">
+                <div class="field-label">PARADO · POR SEGUNDO</div>
+                <div class="field-current">vigente: €{{ rate_stopped }}</div>
+                <input type="number" step="0.01" name="rate_stopped" required>
+            </div>
+            <div class="field-row">
+                <div class="field-label">MOVIMIENTO · POR SEGUNDO</div>
+                <div class="field-current">vigente: €{{ rate_moving }}</div>
+                <input type="number" step="0.01" name="rate_moving" required>
+            </div>
+
+            <hr class="divider">
+
+            <div class="actions">
+                <button type="submit" name="confirmacion" value="1" class="fire">CONFIRMAR</button>
+                <button type="submit" name="confirmacion" value="0">CANCELAR</button>
+            </div>
+        </form>
+
+        <a href="/" class="back-link">← VOLVER</a>
+    </div>
 </body>
 </html>

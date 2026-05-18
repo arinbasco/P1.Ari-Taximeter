@@ -3,45 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Taximeter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-    <h1>Taximeter</h1>
-    <h2>Precio actual: € <span id="precio">{{ precio }}</span></h2>
+    <div class="ticket">
+        <div class="screen-tag">ACTIVO</div>
+        <div class="ticket-head">
+            <div class="brand-mark">TX · MADRID</div>
+            <h1 class="brand-title">TAXIMETER</h1>
+            <div class="brand-sub">SESIÓN INICIADA</div>
+        </div>
 
-    {% for mensaje in get_flashed_messages() %}
-        <p>{{ mensaje }}</p>
-    {% endfor %}
+        {% for mensaje in get_flashed_messages() %}
+            <div class="flash">{{ mensaje }}</div>
+        {% endfor %}
 
-    <form action="/iniciar" method="POST">
-        <button type="submit">Comenzar viaje</button>
-    </form>
+        <div class="meter-block">
+            <div class="meter-label">IMPORTE ACTUAL</div>
+            <div class="meter-value"><span class="cur">€</span><span id="precio">{{ precio }}</span></div>
+        </div>
 
-    <form action="/detener" method="POST">
-        <button type="submit">Detener</button>
-    </form>
+        <hr class="divider">
 
-    <form action="/continuar" method="POST">
-        <button type="submit">Continuar</button>
-    </form>
+        <div class="actions">
+            <form action="/iniciar" method="POST"><button type="submit" class="fire">INICIAR</button></form>
+            <form action="/detener" method="POST"><button type="submit">DETENER</button></form>
+            <form action="/continuar" method="POST"><button type="submit">CONTINUAR</button></form>
+            <form action="/finalizar" method="POST"><button type="submit" class="solid">FINALIZAR</button></form>
+        </div>
 
-    <form action="/finalizar" method="POST">
-        <button type="submit">Finalizar</button>
-    </form>
+        <div class="nav-row">
+            <form action="/reset" method="POST"><button type="submit">NUEVO</button></form>
+            <form action="/tarifas" method="GET"><button type="submit">TARIFAS</button></form>
+            <form action="/historial" method="GET"><button type="submit">HISTORIAL</button></form>
+        </div>
 
-    <form action="/reset" method="POST">
-        <button type="submit">Nuevo viaje</button>
-    </form>
-
-    <form action="/tarifas" method="GET">
-        <button type="submit">Modificar tarifas</button>
-    </form>
-
-    <form action="/historial" method="GET">
-        <button type="submit">Ver historial</button>
-    </form>
-
-    <a href="/logout">Cerrar sesión</a>
+        <a href="/logout" class="logout-link">CERRAR SESIÓN</a>
+    </div>
 
     <script>
         setInterval(function() {

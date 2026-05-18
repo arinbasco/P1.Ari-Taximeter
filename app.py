@@ -83,7 +83,7 @@ def resumen():
     cursor.execute("SELECT fecha, duracion, tiempo_detenido, tiempo_movimiento, precio FROM trips WHERE user_id = ? ORDER BY id DESC LIMIT 1", (session['user_id'],))
     viaje = cursor.fetchone()
     conn.close()
-    return render_template('resumen.html', viaje=viaje)
+    return render_template('resumen.html', viaje=viaje, rate_stopped=taxi.rate_stopped, rate_moving=taxi.rate_moving)
 
 @app.route('/reset', methods=['POST'])
 def reset():

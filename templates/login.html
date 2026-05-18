@@ -2,20 +2,38 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Taximeter - Inicio de sesión</title>
+    <title>Acceso - Taximeter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Taximeter</h1>
-    <h2>Inicio de sesión</h2>
+    <div class="ticket">
+        <div class="screen-tag">ACCESO</div>
+        <div class="ticket-head">
+            <div class="brand-mark">TX · MADRID</div>
+            <h1 class="brand-title">TAXIMETER</h1>
+            <div class="brand-sub">IDENTIFICACIÓN</div>
+        </div>
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
 
-    <form method="POST">
-        <input type="text" name="username" placeholder="Usuario" required><br>
-        <input type="password" name="password" placeholder="Contraseña" required><br>
-        <button type="submit">Ingresar</button>
-    </form>
+        <form method="POST">
+            <div class="field-row">
+                <div class="field-label">USUARIO</div>
+                <input type="text" name="username" required>
+            </div>
+            <div class="field-row">
+                <div class="field-label">CONTRASEÑA</div>
+                <input type="password" name="password" required>
+            </div>
+            <div class="actions">
+                <button type="submit" class="fire" style="grid-column: 1 / -1;">ENTRAR</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

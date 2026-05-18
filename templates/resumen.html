@@ -2,21 +2,56 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Resumen del viaje</title>
+    <title>Ticket - Taximeter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Viaje finalizado</h1>
+    <div class="ticket">
+        {% if viaje %}
+            <div class="screen-tag">FINAL</div>
+            <div class="ticket-head">
+                <div class="brand-mark">TX · MADRID</div>
+                <h1 class="brand-title">TICKET DE VIAJE</h1>
+                <div class="brand-sub">{{ viaje[0] }}</div>
+            </div>
 
-    {% if viaje %}
-    <p><strong>Fecha:</strong> {{ viaje[0] }}</p>
-    <p><strong>Duración total:</strong> {{ viaje[1] }} segundos</p>
-    <p><strong>Tiempo detenido:</strong> {{ viaje[2] }} segundos</p>
-    <p><strong>Tiempo en movimiento:</strong> {{ viaje[3] }} segundos</p>
-    <h2>Total a cobrar: € {{ viaje[4] }}</h2>
-    {% else %}
-    <p>No se encontró información del viaje.</p>
-    {% endif %}
+            <div class="receipt-line">
+                <span class="key">Duración total</span>
+                <span class="dots"></span>
+                <span class="val">{{ viaje[1] }} s</span>
+            </div>
+            <div class="receipt-split">
+                <span class="key">T. detenido</span>
+                <span class="dots"></span>
+                <span class="mid">{{ viaje[2] }} s</span>
+                <span class="dots"></span>
+                <span class="val">€{{ "%.2f"|format(viaje[2] * rate_stopped) }}</span>
+            </div>
+            <div class="receipt-split">
+                <span class="key">T. movimiento</span>
+                <span class="dots"></span>
+                <span class="mid">{{ viaje[3] }} s</span>
+                <span class="dots"></span>
+                <span class="val">€{{ "%.2f"|format(viaje[3] * rate_moving) }}</span>
+            </div>
 
-    <a href="/">Volver al inicio</a>
+            <hr class="divider">
+
+            <div class="receipt-line total">
+                <span class="key">TOTAL</span>
+                <span class="dots"></span>
+                <span class="val">€{{ "%.2f"|format(viaje[4]) }}</span>
+            </div>
+
+            <div class="stamp">PAGADO</div>
+        {% else %}
+            <div class="empty-state">No se encontró información del viaje.</div>
+        {% endif %}
+
+        <a href="/" class="back-link">← VOLVER AL INICIO</a>
+    </div>
 </body>
 </html>
