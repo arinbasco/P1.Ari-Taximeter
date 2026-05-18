@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Taximeter</title>
+</head>
+<body>
+    <h1>Taximeter</h1>
+    <h2>Precio actual: € <span id="precio">0.00</span></h2>
+
+    <form action="/iniciar" method="POST">
+        <button type="submit">Comenzar viaje</button>
+    </form>
+
+    <form action="/detener" method="POST">
+        <button type="submit">Detener</button>
+    </form>
+
+    <form action="/continuar" method="POST">
+        <button type="submit">Continuar</button>
+    </form>
+
+    <form action="/finalizar" method="POST">
+        <button type="submit">Finalizar</button>
+    </form>
+
+    <form action="/reset" method="POST">
+        <button type="submit">Nuevo viaje</button>
+    </form>
+
+    <a href="/logout">Cerrar sesión</a>
+
+    <script>
+        setInterval(function() {
+            fetch('/precio')
+                .then(r => r.text())
+                .then(p => document.getElementById('precio').textContent = p);
+        }, 1000);
+    </script>
+</body>
+</html>
